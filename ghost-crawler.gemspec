@@ -7,10 +7,10 @@ Gem::Specification.new do |gem|
   gem.name = 'ghost-crawler'
   gem.version = GhostCrawler::VERSION
   gem.authors = ['Ben Snape']
-  gem.email = ['ben.snape@itv.com']
+  gem.email = ['bsnape@gmail.com']
   gem.description = %q{Headless PhantomJS Crawler}
   gem.summary = %q{A site crawler that uses GhostDriver (part of PhantomJS)}
-  gem.homepage = 'http://www.bensnape.com'
+  gem.homepage = 'http://github.com/bsnape/ghost-crawler'
 
   gem.files = `git ls-files`.split($/)
   gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
