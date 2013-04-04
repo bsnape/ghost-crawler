@@ -3,7 +3,40 @@
 A lightweight web crawler that uses the Ghost Driver implementation of the WebDriver Wire Protocol from the PhantomJS
 project.
 
-## Installation
+## Pre-requisites
+
+### PhantomJS Installation
+
+Download and install PhantomJS and make sure it is on your `PATH`.
+
+#### Mac
+
+It is recommended you install using homebrew.
+
+    $ brew update && brew install phantomjs
+
+Then check it is on your `PATH`.
+
+    $ which phantomjs
+    /usr/local/bin/phantomjs
+
+#### Windows
+
+Currently untested and unsupported.
+
+#### Linux
+
+Currently untested and unsupported.
+
+### Run PhantomJS
+
+Make sure PhantomJS is running on port 9134.
+
+    $ phantomjs --webdriver=9134
+    PhantomJS is launching GhostDriver...
+    [INFO  - 2013-04-03T18:00:47.747Z] GhostDriver - Main - running on port 9134
+
+## Gem Installation
 
 Add this line to your application's Gemfile:
 
