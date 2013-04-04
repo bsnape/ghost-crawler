@@ -1,1 +1,2 @@
-require 'timeout'
+require 'rspec'
+require 'ghost-crawler'
