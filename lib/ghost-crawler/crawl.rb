@@ -1,19 +1,25 @@
 require 'set'
+require 'selenium-webdriver'
 
 module GhostCrawler
 
-  class Crawl < Driver
+  class Driver
+
+    attr_reader :driver, :unvisited_links, :visited_links
 
     def initialize(site, server = 'http://localhost:9134')
       @site = site
       @unvisited_links = Queue.new
       @visited_links = Set.new
-      super(server)
+      @driver = Selenium::WebDriver.for(:remote, :url => server)
+      @unvisited_links.push site
+    end
+
+    def take_screenshot
+      @driver.save_screenshot "screenshot#{SecureRandom.rand(1000)}.png"
     end
 
     def crawl
-      @unvisited_links.push @site
-
       start_page = @unvisited_links.pop
       @driver.navigate.to start_page
       get_links_on_page
@@ -33,9 +39,8 @@ module GhostCrawler
 
     def get_links_on_page
       elements = Set.new @driver.find_elements(:tag_name => 'a')
-      elements.delete_if { |e| !e.displayed? }
-      urls = elements.map { |element| element.attribute('href') }
-      urls.each { |url| @unvisited_links.push url }
+      elements.delete_if { |e| !e.displayed? } # remove hidden links
+      elements.map { |element| element.attribute('href') }
     end
 
   end
