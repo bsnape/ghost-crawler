@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 
 module GhostCrawler
 
-  class Driver
+  class Crawler
 
     attr_reader :driver, :unvisited_links, :visited_links
 
