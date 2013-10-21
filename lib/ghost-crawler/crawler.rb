@@ -15,26 +15,19 @@ module GhostCrawler
       @unvisited_links.push site
     end
 
-    def take_screenshot
-      @driver.save_screenshot "screenshot#{SecureRandom.rand(1000)}.png"
-    end
-
     def crawl
-      start_page = @unvisited_links.pop
-      @driver.navigate.to start_page
-      get_links_on_page
+      base_page = @unvisited_links.pop
+      @driver.get base_page
+
+      @visited_links.add base_page
+
+      @unvisited_links.push get_links_on_page
 
       until @unvisited_links.empty?
-        link = @unvisited_links.pop
-        puts "navigating to: #{link} | still got #{@unvisited_links.size} to visit"
-        puts '------------------'
-
-        @driver.navigate.to link
+        link = @unvisited_links.pop[0]
+        @driver.get link
         @visited_links.add link
-        get_links_on_page
       end
-      puts "visited the following #{@visited_links.size} links:"
-      @visited_links.each { |link| puts link }
     end
 
     def get_links_on_page
