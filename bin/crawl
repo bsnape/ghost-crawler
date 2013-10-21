@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'ghost-crawler'
-
-GhostCrawler::Cli::Application.new(ARGV)
